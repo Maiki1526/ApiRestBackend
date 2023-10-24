@@ -29,13 +29,11 @@ export const getVehicles = async (req, res) => {
 export const createNewVehicles = async (req, res) => {
     //recibir todos los datos del cliente
     const { fecha_ingreso, numero_serie, placa_vehiculo, foto_placa, foto_contenedor, foto_sello, nombre_audit } = req.body
-
     if (fecha_ingreso == null || numero_serie == null || placa_vehiculo == null ||
         foto_placa == null || foto_contenedor == null || foto_sello == null ||
         nombre_audit == null) {
         return res.status(400).json({ msg: ' Por favor llena todos los campos' })
     }
-
     try {
 
         const pool = await getConnection();
@@ -51,16 +49,12 @@ export const createNewVehicles = async (req, res) => {
             .input("foto_sello", sql.VarChar, foto_sello)
             .input("nombre_audit", sql.VarChar, nombre_audit)
             .query(queries.addNewVehicle);
-
         // res.json({ fecha_ingreso, numero_serie, placa_vehiculo, foto_placa, foto_contenedor, foto_sello, nombre_audit });
-        
         return res.redirect('/list.html');
-
     } catch (error) {
         res.status(500);
         res.send(error.message);
     }
-    
 };
 
 //obtener un unico vehiculo por ID

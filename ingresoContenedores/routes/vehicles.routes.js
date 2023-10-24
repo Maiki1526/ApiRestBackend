@@ -13,7 +13,7 @@ var router = (0, _express.Router)();
 router.get('/vehicles', _vehicles.getVehicles);
 
 //crear
-router.post('/vehicles', _vehicles.createNewVehicles);
+router.post('/postvehicles', _vehicles.createNewVehicles);
 
 //Total Vehicles
 router.get('/vehicles/count', _vehicles.getTotalVehicles);
